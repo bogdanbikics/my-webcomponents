@@ -15,7 +15,6 @@ export class MyLightBox {
 
     @Watch('actualImageIndex')
     imageIndexChanged(newValue: number, oldValue: number) {
-        console.log('Hey')
         if (newValue !== oldValue) {
             this.modalImage.src = this.images[newValue].src;
         }
@@ -26,8 +25,18 @@ export class MyLightBox {
         const slotElement = this.el.shadowRoot.querySelector('slot') as HTMLSlotElement;
         this.images = slotElement.assignedElements() as HTMLImageElement[];
         this.images.forEach((imgElement: HTMLImageElement) => {
-            imgElement.className = 'thumbnail-image';
+            // const wrapper = document.createElement('div');
+            // wrapper.className = "imgWrapper";
+            // imgElement.parentNode.insertBefore(wrapper, imgElement);
+            // wrapper.appendChild(imgElement);
+            
+            imgElement.onload = (ev) => 
+                (ev.target as HTMLImageElement).classList.remove('loading');
             imgElement.addEventListener('click', this.openModal.bind(this));
+            imgElement.className = 'thumbnail-image';
+            if (!imgElement.complete) {
+                imgElement.classList.add('loading');
+            }
         });
     }
 

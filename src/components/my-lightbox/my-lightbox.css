@@ -15,6 +15,10 @@
     transition: all 0.2s ease-out;
 }
 
+::slotted(.thumbnail-image.loading) {
+    opacity: 0;
+}
+
 ::slotted(.thumbnail-image:hover) {
     opacity: 0.5;
 }
