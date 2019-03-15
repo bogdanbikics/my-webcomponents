@@ -1,0 +1,77 @@
+.thumbnails-container {
+    display: flex;
+    align-items: flex-end;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+::slotted(.thumbnail-image) {
+    height: auto;
+    width: auto;
+    max-width: 200px;
+    max-height: 200px;
+    margin: 15px;
+    opacity: 1;
+    transition: all 0.2s ease-out;
+}
+
+::slotted(.thumbnail-image:hover) {
+    opacity: 0.5;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.75);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
+
+.images-modal {
+    position: fixed;
+    top: 10vh;
+    left: 50vh;
+    z-index: 20;
+    padding: 10px;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0, 2px, 8px, rgba(0, 0, 0, 0.26);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-out;
+}
+
+.image {
+    height: auto;
+    width: auto;
+    max-width: 80vh;
+    max-height: 80vh;
+}
+
+:host([opened]) .backdrop {
+    opacity: 1;
+    pointer-events: all;
+}
+
+:host([opened]) .images-modal {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.nav-forward {
+    height: 100%;
+    background: rgb(214, 214, 214);
+}
+
+.nav-back {
+    height: 100%;
+    background: rgb(214, 214, 214);
+}
