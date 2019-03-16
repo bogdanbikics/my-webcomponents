@@ -1,0 +1,27 @@
+
+.img-wrapper {
+    background-color: lightgray;
+    /* background-image: url('/resources/my-lightbox/loading.gif');
+    background-repeat: no-repeat;
+    background-position: center;  */
+    padding: 0;
+    margin: 15px;
+}
+.thumbnail-image {
+    padding: 0;
+    margin: 0;
+    height: auto;
+    width: auto;
+    max-width: 200px;
+    max-height: 200px;
+    opacity: 1;
+    transition: all 0.2s ease-out;
+}
+
+.thumbnail-image.loading {
+    opacity: 0;
+}
+
+.thumbnail-image:hover {
+    opacity: 0.5;
+}

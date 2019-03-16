@@ -1,4 +1,5 @@
-import { Component, Element, Prop, Watch } from "@stencil/core";
+import { Component, Element, Prop, Watch, Listen } from "@stencil/core";
+import { MyLighBoxImage } from "../my-lightbox-image/my-lightbox-image";
 
 @Component({
     tag: 'my-lightbox',
@@ -6,7 +7,7 @@ import { Component, Element, Prop, Watch } from "@stencil/core";
     shadow: true
 })
 export class MyLightBox {
-    images: HTMLImageElement[];
+    images: MyLighBoxImage[];
     modalImage: HTMLImageElement;
     
     @Element() el: HTMLElement;
@@ -20,30 +21,25 @@ export class MyLightBox {
         }
     }
 
+    @Listen('body:myImageClickedEvent')
+    onThumbnailClicked(event: CustomEvent) {
+        console.log('thumbnail clicked...', event.detail);
+        this.modalImage.src = event.detail;
+        this.openModal(event);
+    }
+
+
     componentDidLoad() {
         this.modalImage = this.el.shadowRoot.querySelector(".image") as HTMLImageElement;
         const slotElement = this.el.shadowRoot.querySelector('slot') as HTMLSlotElement;
-        this.images = slotElement.assignedElements() as HTMLImageElement[];
-        this.images.forEach((imgElement: HTMLImageElement) => {
-            // const wrapper = document.createElement('div');
-            // wrapper.className = "imgWrapper";
-            // imgElement.parentNode.insertBefore(wrapper, imgElement);
-            // wrapper.appendChild(imgElement);
-            
-            imgElement.onload = (ev) => 
-                (ev.target as HTMLImageElement).classList.remove('loading');
-            imgElement.addEventListener('click', this.openModal.bind(this));
-            imgElement.className = 'thumbnail-image';
-            if (!imgElement.complete) {
-                imgElement.classList.add('loading');
-            }
-        });
+        this.images = slotElement.assignedElements() as any[];
     }
 
     openModal(event: Event) {
         this.opened = true;
-        const selectedImage = event.target as HTMLImageElement;
-        this.actualImageIndex = this.images.indexOf(selectedImage);
+        const selectedImage = event.target;
+        console.log(selectedImage);
+        this.actualImageIndex = this.images.indexOf(selectedImage as any);
     }
 
     closeModal() {

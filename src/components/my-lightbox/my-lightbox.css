@@ -5,23 +5,6 @@
     flex-wrap: wrap;
 }
 
-::slotted(.thumbnail-image) {
-    height: auto;
-    width: auto;
-    max-width: 200px;
-    max-height: 200px;
-    margin: 15px;
-    opacity: 1;
-    transition: all 0.2s ease-out;
-}
-
-::slotted(.thumbnail-image.loading) {
-    opacity: 0;
-}
-
-::slotted(.thumbnail-image:hover) {
-    opacity: 0.5;
-}
 
 .backdrop {
     position: fixed;

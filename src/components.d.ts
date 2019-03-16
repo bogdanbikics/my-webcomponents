@@ -41,6 +41,16 @@ export namespace Components {
     'middle'?: string;
   }
 
+  interface MyLightboxImage {
+    'alt': string;
+    'src': string;
+  }
+  interface MyLightboxImageAttributes extends StencilHTMLAttributes {
+    'alt'?: string;
+    'onMyImageClickedEvent'?: (event: CustomEvent<string>) => void;
+    'src'?: string;
+  }
+
   interface MyLightbox {
     'actualImageIndex': number;
     'opened': boolean;
@@ -54,11 +64,13 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'MyComponent': Components.MyComponent;
+    'MyLightboxImage': Components.MyLightboxImage;
     'MyLightbox': Components.MyLightbox;
   }
 
   interface StencilIntrinsicElements {
     'my-component': Components.MyComponentAttributes;
+    'my-lightbox-image': Components.MyLightboxImageAttributes;
     'my-lightbox': Components.MyLightboxAttributes;
   }
 
@@ -69,6 +81,12 @@ declare global {
     new (): HTMLMyComponentElement;
   };
 
+  interface HTMLMyLightboxImageElement extends Components.MyLightboxImage, HTMLStencilElement {}
+  var HTMLMyLightboxImageElement: {
+    prototype: HTMLMyLightboxImageElement;
+    new (): HTMLMyLightboxImageElement;
+  };
+
   interface HTMLMyLightboxElement extends Components.MyLightbox, HTMLStencilElement {}
   var HTMLMyLightboxElement: {
     prototype: HTMLMyLightboxElement;
@@ -77,11 +95,13 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'my-component': HTMLMyComponentElement
+    'my-lightbox-image': HTMLMyLightboxImageElement
     'my-lightbox': HTMLMyLightboxElement
   }
 
   interface ElementTagNameMap {
     'my-component': HTMLMyComponentElement;
+    'my-lightbox-image': HTMLMyLightboxImageElement;
     'my-lightbox': HTMLMyLightboxElement;
   }
 
