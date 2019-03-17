@@ -45,7 +45,6 @@ export class MyLightBox {
 	openModal(event: Event) {
 		this.opened = true;
 		const selectedImage = event.target;
-		console.log(selectedImage);
 		this.actualImageIndex = this.images.indexOf(selectedImage as any);
 	}
 
@@ -75,26 +74,28 @@ export class MyLightBox {
 		const slotElement = this.el.shadowRoot.querySelector('slot') as HTMLSlotElement;
 		this.images = slotElement.assignedElements() as any[];
 	}
-
+	
 	render() {
 		return [
 			<div class="thumbnails-container">
 				<slot></slot>
 			</div>,
 			<div class="backdrop" onClick={this.closeModal.bind(this)}></div>,
-			<div class="images-modal">
-				<div
-					class="nav-back"
-					ref={el => this.buttonBack = el}
-					onClick={this.navigateBack.bind(this)}>Back
+			<div class="modal-wrapper">
+				<div class="images-modal">
+					<div
+						class="nav-back"
+						ref={el => this.buttonBack = el}
+						onClick={this.navigateBack.bind(this)}>Back
                 </div>
-				<img 
-					class="image" 
-					ref={el => this.modalImage = el}/>
-				<div 
-					class="nav-forward" 
-					ref={el => this.buttonForward = el}
-					onClick={this.navigateForward.bind(this)}>Next
+					<img
+						class="image"
+						ref={el => this.modalImage = el} />
+					<div
+						class="nav-forward"
+						ref={el => this.buttonForward = el}
+						onClick={this.navigateForward.bind(this)}>Next
+				</div>
 				</div>
 			</div>
 		];
