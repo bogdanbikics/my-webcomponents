@@ -44,11 +44,13 @@ export namespace Components {
   interface MyLightboxImage {
     'alt': string;
     'src': string;
+    'thumbnailSrc': string;
   }
   interface MyLightboxImageAttributes extends StencilHTMLAttributes {
     'alt'?: string;
     'onMyImageClickedEvent'?: (event: CustomEvent<string>) => void;
     'src'?: string;
+    'thumbnailSrc'?: string;
   }
 
   interface MyLightbox {
