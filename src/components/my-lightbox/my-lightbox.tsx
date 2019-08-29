@@ -1,5 +1,4 @@
 import { Component, Element, Prop, Watch, Listen } from "@stencil/core";
-import { MyLighBoxImage } from "../my-lightbox-image/my-lightbox-image";
 
 @Component({
 	tag: 'my-lightbox',
@@ -7,7 +6,7 @@ import { MyLighBoxImage } from "../my-lightbox-image/my-lightbox-image";
 	shadow: true
 })
 export class MyLightBox {
-	images: MyLighBoxImage[];
+	images: any[];
 	modalImage: HTMLImageElement;
 	buttonBack: HTMLDivElement;
 	buttonForward: HTMLDivElement;
@@ -18,7 +17,6 @@ export class MyLightBox {
 
 	@Listen('body:myImageClickedEvent')
 	onThumbnailClicked(event: CustomEvent) {
-		console.log('thumbnail clicked...', event.detail);
 		this.modalImage.src = event.detail;
 		this.openModal(event);
 	}
@@ -72,7 +70,7 @@ export class MyLightBox {
 
 	componentDidLoad() {
 		const slotElement = this.el.shadowRoot.querySelector('slot') as HTMLSlotElement;
-		this.images = slotElement.assignedElements() as any[];
+		this.images = slotElement.assignedElements();
 	}
 	
 	render() {

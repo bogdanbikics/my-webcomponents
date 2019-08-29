@@ -24,6 +24,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
+    transition: width 1s ease-in;
 }
 
 .images-modal {
@@ -40,7 +41,6 @@
     justify-content: space-between;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.3s ease-out;
 }
 
 .image {
@@ -48,6 +48,7 @@
     width: auto;
     max-width: 80vh;
     max-height: 80vh;
+    transition: width 1s ease-in;
 }
 
 :host([opened]) .backdrop {

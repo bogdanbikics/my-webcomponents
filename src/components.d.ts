@@ -12,35 +12,6 @@ import '@stencil/core';
 
 export namespace Components {
 
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
-  }
-  interface MyComponentAttributes extends StencilHTMLAttributes {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
-  }
-
   interface MyLightboxImage {
     'alt': string;
     'src': string;
@@ -65,23 +36,15 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
-    'MyComponent': Components.MyComponent;
     'MyLightboxImage': Components.MyLightboxImage;
     'MyLightbox': Components.MyLightbox;
   }
 
   interface StencilIntrinsicElements {
-    'my-component': Components.MyComponentAttributes;
     'my-lightbox-image': Components.MyLightboxImageAttributes;
     'my-lightbox': Components.MyLightboxAttributes;
   }
 
-
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
-  };
 
   interface HTMLMyLightboxImageElement extends Components.MyLightboxImage, HTMLStencilElement {}
   var HTMLMyLightboxImageElement: {
@@ -96,13 +59,11 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement
     'my-lightbox-image': HTMLMyLightboxImageElement
     'my-lightbox': HTMLMyLightboxElement
   }
 
   interface ElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
     'my-lightbox-image': HTMLMyLightboxImageElement;
     'my-lightbox': HTMLMyLightboxElement;
   }
